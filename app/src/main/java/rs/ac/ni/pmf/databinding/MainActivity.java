@@ -8,23 +8,27 @@ import android.widget.Button;
 
 import rs.ac.ni.pmf.databinding.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
-
-    private final User _user = new User("Stefan", "Radovanovic", "perin", 25, true);
-    private final User _user2 = new User("Marko", "Markovic", "mare", 33, false);
+public class MainActivity extends AppCompatActivity implements UsersHandler{
 
     //private ActivityMainBinding activityMainBinding;
     private ActivityMainBinding _binding;
+
+    private UsersRepository _userRepository = UsersRepository.INSTANCE;
+    private int _currentUser = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setContentView(R.layout.activity_main);
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        _binding.setUser(_user);
+        _binding.setUser(_userRepository.getUser(_currentUser));
+        _binding.setUsers(_userRepository.getUsers());
+        _binding.setHandlers(this);
 
-        Button buttonChange = findViewById(R.id.buttonChange);
-        buttonChange.setOnClickListener(view -> changeUser());
+        /*Button buttonChange = findViewById(R.id.button_next);
+        buttonChange.setOnClickListener(view -> nextUser());*/
+
+
 
         /*activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
@@ -40,7 +44,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void changeUser() {
-        _binding.setUser(_user2);
+    @Override
+    public void nextUser() {
+        if(_currentUser < _userRepository.count() - 1){
+            _currentUser++;
+            _binding.setUser(_userRepository.getUser(_currentUser));
+        }
+    }
+
+    @Override
+    public void previousUser() {
+        if(_currentUser > 0){
+            _currentUser--;
+            _binding.setUser(_userRepository.getUser(_currentUser));
+        }
     }
 }
