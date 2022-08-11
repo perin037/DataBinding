@@ -34,13 +34,15 @@
         android:text='@{user.firstName + " " + user.lastName}'/>
 
 
-    <TextView
+    <EditText
         android:id="@+id/text_username"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@{user.username != null ? user.username : `no username`}"
+        android:layout_marginEnd="16dp"
+        android:text="@={user.username}"
+        android:hint="Enter username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_name"
         />
@@ -66,7 +68,7 @@
         android:layout_marginTop="16dp"
         android:text="Registred"
 
-        android:checked="@{user.registered}"
+        android:checked="@={user.registered}"
         android:enabled="@{user.age > 26 ? true : false}"
         android:visibility="@{user.age >= 18 ? View.VISIBLE : View.GONE}"
 
@@ -111,6 +113,7 @@
             />
         
         <LinearLayout
+            android:id="@+id/command_buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -144,9 +147,32 @@
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
                 />
-
-
         </LinearLayout>
 
+        <Button
+            android:id="@+id/button_older"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Get older"
+
+            android:onClick="@{() -> user.makeOlder()}"
+
+            app:layout_constraintBottom_toTopOf="@id/command_buttons"/>
+
+        <Button
+            android:id="@+id/button_show_current_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Show current age"
+
+            android:onClick="@{() -> handlers.toastValue(user.age)}"
+
+            app:layout_constraintBottom_toTopOf="@id/button_older"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

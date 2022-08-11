@@ -1,6 +1,9 @@
 package rs.ac.ni.pmf.databinding;
 
-public class User {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
+public class User extends BaseObservable {
     private String firstName;
     private String lastName;
     private String username;
@@ -27,8 +30,14 @@ public class User {
         this.username = username;
     }
 
+    @Bindable
+    public int getAge() {
+        return age;
+    }
+
     public void setAge(int age) {
         this.age = age;
+        notifyPropertyChanged(BR.age);
     }
 
     public void setRegistered(boolean registered) {
@@ -47,11 +56,12 @@ public class User {
         return username;
     }
 
-    public int getAge() {
-        return age;
-    }
 
     public boolean isRegistered() {
         return registered;
+    }
+
+    public void makeOlder(){
+        setAge(getAge()+1);
     }
 }
