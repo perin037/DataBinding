@@ -4,15 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.Toast;
 
-import rs.ac.ni.pmf.databinding.databinding.ActivityMainBinding;
+import rs.ac.ni.pmf.databinding.databinding.ActivityUserDetailsBinding;
 
-public class MainActivity extends AppCompatActivity implements UsersHandler{
+public class UserDetailsActivity extends AppCompatActivity implements UsersHandler{
 
     //private ActivityMainBinding activityMainBinding;
-    private ActivityMainBinding _binding;
+    private ActivityUserDetailsBinding _binding;
 
     private UsersRepository _userRepository = UsersRepository.INSTANCE;
     private int _currentUser = 0;
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements UsersHandler{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        _binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        _binding = DataBindingUtil.setContentView(this, R.layout.activity_user_details);
         _binding.setUser(_userRepository.getUser(_currentUser));
         _binding.setUsers(_userRepository.getUsers());
         _binding.setHandlers(this);

@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DataBinding">
         <activity
-            android:name=".MainActivity"
+            android:name=".UserDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UsersMainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
