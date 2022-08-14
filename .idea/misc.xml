@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Master/Android/DataBinding/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Master/Android/DataBinding/app/src/main/res/layout/activity_user_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Master/Android/DataBinding/app/src/main/res/layout/activity_users_main.xml" value="0.13020833333333334" />
+        <entry key="..\:/Master/Android/DataBinding/app/src/main/res/layout/user_details_fragment.xml" value="0.264" />
         <entry key="..\:/Master/Android/DataBinding/app/src/main/res/layout/user_list_element.xml" value="0.25416666666666665" />
       </map>
     </option>
